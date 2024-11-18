@@ -44,12 +44,13 @@ def process_data(trs):
 
 
 def display_letters(patterns: list):
-    display = []
-
-    while [] in patterns:
-        empty_index = patterns.index([])
-
-        rows, columns = empty_index, -1
+    while patterns:
+        if [] in patterns:
+            empty_index = patterns.index([])
+            rows = empty_index
+        else:
+            rows = len(patterns)
+        columns = -1
         for r in range(rows):
             columns = max(columns, len(patterns[r]))
 
@@ -62,9 +63,10 @@ def display_letters(patterns: list):
             print()
         print()
         
-        patterns = patterns[empty_index + 1:]
+        patterns = patterns[rows + 1:]
     
     return True
+
 
 
 def decryption_googledoc(url: str):
